@@ -15,9 +15,9 @@ else if (randomNumber <= 1) {
 // Randomly picks either rock, paper or scissors for the computer
 
 function playRound (playerSelection, computerSelection) {
-    let win = 'You win, well done!';
-    let lose = 'You lose, better luck next time.';
-    let draw = 'It\'s a draw!';
+    let win = 'You win that round, well done!';
+    let lose = 'The computer wins that round, try again!';
+    let draw = 'That round was a draw';
 
     if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'Scissors') {
         return win;
@@ -53,13 +53,13 @@ function playRound (playerSelection, computerSelection) {
 
 function score (roundResult) {
 
-    if (roundResult === 'You win, well done!') {
+    if (roundResult === 'You win that round, well done!') {
         playerScore++;
         let totalScore = playerScore + ' - ' + computerScore;
         return totalScore;
     }
 
-    else if (roundResult === 'You lose, better luck next time.') {
+    else if (roundResult === 'The computer wins that round, try again!') {
         computerScore++;
         let totalScore = playerScore + ' - ' + computerScore;
         return totalScore;
@@ -75,7 +75,7 @@ function score (roundResult) {
 
 function game () {
     for (let i=0;i<5;i++) {
-        const playerSelection = 'Paper';
+        const playerSelection = window.prompt('Enter either rock, paper or scissors!');
         const computerSelection = computerPlay();
         const roundResult = playRound(playerSelection, computerSelection);
         const roundScore = score(roundResult);
@@ -86,6 +86,23 @@ function game () {
 
 // A loop that runs five times, takes the player & computer selections, the result of the round & the score at the end of the round. The result of the round and the score is displayed in the console log after each iteration.
 
+function finalResult (playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        console.log('Congrats, you have beat the computer!');
+    }
+    
+    else if (computerScore > playerScore) {
+        console.log('You lose, better luck next time!');
+    }
+
+    else {
+        console.log('The game has ended a tie.');
+    }
+}
+
+// Declares the overall result after 5 rounds of the game.
+
 let playerScore = 0;
 let computerScore = 0;
 game();
+finalResult (playerScore, computerScore);
